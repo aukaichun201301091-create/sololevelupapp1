@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo LevelUp - Fitness & Wellness App</title>
+    <link rel="stylesheet" href="solo_levelup_v2_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+    
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Solo LevelUp</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="points-badge">
+                        <i class="fas fa-coins"></i>
+                        <span class="points">1,250 pts</span>
+                    </div>
+                    <button class="share-btn" id="shareButton" title="Share this app">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Dashboard Overview -->
+            <section class="dashboard">
+                <div class="dashboard-card">
+                    <h2>Today's Progress</h2>
+                    <div class="progress-stats">
+                        <div class="stat">
+                            <span class="stat-value">75%</span>
+                            <span class="stat-label">Workout</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">2,100</span>
+                            <span class="stat-label">Calories</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">5/7</span>
+                            <span class="stat-label">Goals</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="action-btn" data-feature="food">
+                        <i class="fas fa-utensils"></i>
+                        <span>Log Meal</span>
+                    </button>
+                    <button class="action-btn" data-feature="workout">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Workout</span>
+                    </button>
+                    <button class="action-btn" data-feature="sleep">
+                        <i class="fas fa-bed"></i>
+                        <span>Sleep</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- StudyForge Lock-up Section -->
+            <section class="studyforge">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> StudyForge</h2>
+                    <button class="btn-secondary">View All</button>
+                </div>
+                
+                <div class="studyforge-content">
+                    <div class="focus-stats">
+                        <div class="focus-card">
+                            <h3>Focus Time</h3>
+                            <p class="focus-value">2h 45m</p>
+                            <p class="focus-trend">↑ 15% from yesterday</p>
+                        </div>
+                        <div class="focus-card">
+                            <h3>Breaks</h3>
+                            <p class="focus-value">3</p>
+                            <p class="focus-trend">Optimal pattern</p>
+                        </div>
+                    </div>
+                    
+                    <div class="current-session">
+                        <h3>Current Session</h3>
+                        <div class="session-info">
+                            <p>Deep Work Session</p>
+                            <p class="session-time">45:12</p>
+                        </div>
+                        <button class="btn-primary">End Session</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Food Intake Section -->
+            <section class="food-intake">
+                <div class="section-header">
+                    <h2><i class="fas fa-utensils"></i> Food Intake</h2>
+                    <button class="btn-secondary" id="aiAnalysisBtn">AI Analysis</button>
+                </div>
+                
+                <div class="food-log">
+                    <div class="meal-entry">
+                        <div class="meal-info">
+                            <h3>Breakfast</h3>
+                            <p>Oatmeal with berries</p>
+                        </div>
+                        <div class="meal-calories">
+                            <span>320 cal</span>
+                        </div>
+                    </div>
+                    
+                    <div class="meal-entry">
+                        <div class="meal-info">
+                            <h3>Lunch</h3>
+                            <p>Grilled chicken salad</p>
+                        </div>
+                        <div class="meal-calories">
+                            <span>450 cal</span>
+                        </div>
+                    </div>
+                    
+                    <div class="meal-entry add-meal">
+                        <button class="btn-primary" id="addMealBtn">
+                            <i class="fas fa-plus"></i> Add Meal
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="restaurant-partner">
+                    <h3>Recommended for Dinner</h3>
+                    <div class="restaurant-card">
+                        <div class="restaurant-info">
+                            <h4>Fitness Kitchen</h4>
+                            <p>Healthy protein bowls</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.5)</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-action">
+                            <button class="btn-small" data-action="view-menu">View Menu</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Photo Analysis Upload -->
+                <div class="ai-analysis-section" id="aiAnalysisSection" style="display: none;">
+                    <h3>AI Photo Analysis</h3>
+                    <p>Upload a photo of your meal for instant nutritional analysis</p>
+                    <div class="upload-area">
+                        <i class="fas fa-camera fa-2x"></i>
+                        <p>Click to upload meal photo</p>
+                        <input type="file" id="mealPhoto" accept="image/*" style="display: none;">
+                        <button class="btn-primary" id="uploadPhotoBtn">Select Photo</button>
+                    </div>
+                    <div class="analysis-result" id="analysisResult" style="display: none;">
+                        <h4>Analysis Result</h4>
+                        <p>Nutritional breakdown will appear here</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sleep Tracking Section -->
+            <section class="sleep-tracking">
+                <div class="section-header">
+                    <h2><i class="fas fa-bed"></i> Sleep Tracking</h2>
+                    <button class="btn-secondary">Last Night</button>
+                </div>
+                
+                <div class="sleep-summary">
+                    <div class="sleep-card">
+                        <h3>Last Night</h3>
+                        <p class="sleep-duration">7h 24m</p>
+                        <p class="sleep-quality">Quality: Good</p>
+                    </div>
+                    
+                    <div class="sleep-cycle">
+                        <h3>Sleep Cycle</h3>
+                        <div class="cycle-chart">
+                            <div class="cycle-phase light">Light Sleep</div>
+                            <div class="cycle-phase deep">Deep Sleep</div>
+                            <div class="cycle-phase rem">REM Sleep</div>
+                        </div>
+                        <div class="cycle-stats">
+                            <div class="cycle-stat">
+                                <span class="stat-label">Light</span>
+                                <span class="stat-value">4h 12m</span>
+                            </div>
+                            <div class="cycle-stat">
+                                <span class="stat-label">Deep</span>
+                                <span class="stat-value">1h 58m</span>
+                            </div>
+                            <div class="cycle-stat">
+                                <span class="stat-label">REM</span>
+                                <span class="stat-value">1h 14m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Personal Gym Coach Section -->
+            <section class="gym-coach">
+                <div class="section-header">
+                    <h2><i class="fas fa-dumbbell"></i> Your Coach</h2>
+                    <button class="btn-secondary" id="changeGoalBtn">Change Goal</button>
+                </div>
+                
+                <div class="coach-card">
+                    <div class="coach-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="coach-info">
+                        <h3>Alex, Your AI Coach</h3>
+                        <p>Goal: Build Muscle Mass</p>
+                        <p>Current Plan: 5-day split</p>
+                    </div>
+                </div>
+                
+                <div class="workout-today">
+                    <h3>Today's Workout</h3>
+                    <div class="workout-plan">
+                        <div class="exercise">
+                            <div class="exercise-info">
+                                <h4>Bench Press</h4>
+                                <p>3 sets x 8-10 reps</p>
+                            </div>
+                            <div class="exercise-action">
+                                <button class="btn-small workout-start" data-exercise="Bench Press">Start</button>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise">
+                            <div class="exercise-info">
+                                <h4>Incline Dumbbell Press</h4>
+                                <p>3 sets x 10-12 reps</p>
+                            </div>
+                            <div class="exercise-action">
+                                <button class="btn-small workout-start" data-exercise="Incline Dumbbell Press">Start</button>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise">
+                            <div class="exercise-info">
+                                <h4>Cable Flyes</h4>
+                                <p>3 sets x 12-15 reps</p>
+                            </div>
+                            <div class="exercise-action">
+                                <button class="btn-small workout-start" data-exercise="Cable Flyes">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="meal-recommendation">
+                    <h3>Post-Workout Meal</h3>
+                    <div class="meal-card">
+                        <div class="meal-details">
+                            <h4>Protein Shake</h4>
+                            <p>Whey protein, banana, almond milk</p>
+                            <span class="calories">280 cal</span>
+                        </div>
+                        <div class="meal-action">
+                            <button class="btn-small" data-action="log-meal">Log Meal</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Restaurant Recommendation -->
+                <div class="restaurant-recommendation">
+                    <h3>Post-Workout Restaurants</h3>
+                    <div class="restaurant-card">
+                        <div class="restaurant-info">
+                            <h4>Protein Palace</h4>
+                            <p>High-protein post-workout meals</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(4.8)</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-action">
+                            <button class="btn-small" data-action="recommend-menu">View Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rewards Section -->
+            <section class="rewards">
+                <div class="section-header">
+                    <h2><i class="fas fa-trophy"></i> Rewards & Points</h2>
+                    <button class="btn-secondary" id="redeemBtn">Redeem</button>
+                </div>
+                
+                <div class="points-summary">
+                    <div class="points-card">
+                        <div class="points-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="points-info">
+                            <h3>1,250 Points</h3>
+                            <p>Earned this month</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="daily-challenges">
+                    <h3>Daily Challenges</h3>
+                    <div class="challenge-card">
+                        <div class="challenge-info">
+                            <h4>Complete Workout</h4>
+                            <p>+50 points</p>
+                        </div>
+                        <div class="challenge-action">
+                            <button class="btn-small challenge-complete" data-points="50">Complete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-card">
+                        <div class="challenge-info">
+                            <h4>Log 3 Meals</h4>
+                            <p>+30 points</p>
+                        </div>
+                        <div class="challenge-action">
+                            <button class="btn-small challenge-complete" data-points="30">Complete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-card">
+                        <div class="challenge-info">
+                            <h4>7 Hours Sleep</h4>
+                            <p>+40 points</p>
+                        </div>
+                        <div class="challenge-action">
+                            <button class="btn-small challenge-complete" data-points="40">Complete</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="coupons">
+                    <h3>Available Coupons</h3>
+                    <div class="coupon-card">
+                        <div class="coupon-details">
+                            <h4>20% Off</h4>
+                            <p>Fitness Kitchen</p>
+                            <span class="expiry">Expires in 7 days</span>
+                        </div>
+                        <div class="coupon-action">
+                            <button class="btn-small" data-action="use-coupon">Use Now</button>
+                        </div>
+                    </div>
+                    
+                    <div class="coupon-card">
+                        <div class="coupon-details">
+                            <h4>Free Dessert</h4>
+                            <p>Green Cafe</p>
+                            <span class="expiry">Expires in 14 days</span>
+                        </div>
+                        <div class="coupon-action">
+                            <button class="btn-small" data-action="use-coupon">Use Now</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-utensils"></i>
+                <span>Meals</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-dumbbell"></i>
+                <span>Workout</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-bed"></i>
+                <span>Sleep</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="solo_levelup_v2_script.js"></script>
+</body>
+</html>
